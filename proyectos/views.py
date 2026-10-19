@@ -107,6 +107,7 @@ def _serializar(proyecto, user):
         })
     emp = next((e for e in company_loader.get_all() if e.nombre == proyecto.empresa), None)
     return {
+        "id": proyecto.pk,
         # Nombre de las carpetas raíz en Nextcloud (títulos de las secciones de archivos).
         "carpetas": {"contratista": emp.carpeta_nextcloud if emp else "Docs. Contratista",
                      "ito": ROOT_ITO_INTERNO.lstrip("/")},

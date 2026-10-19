@@ -1,0 +1,26 @@
+{% load static %}{% if activo %}
+<link rel="stylesheet" href="{% static 'postits/postits.css' %}">
+<div id="postits-root" data-csrf="{{ csrf }}" data-base="{{ urls.base }}">
+  <button type="button" id="postits-fab" aria-label="Notas post-it" title="Notas post-it">
+    <i class="fa-solid fa-note-sticky"></i>
+    <span class="postits-fab-txt">Notas</span>
+    <span id="postits-count" class="postits-count hidden"></span>
+    <span id="postits-badge" class="postits-badge hidden"></span>
+  </button>
+  <aside id="postits-panel" class="postits-panel hidden" aria-label="Notas post-it">
+    <header class="postits-head">
+      <div role="tablist" class="tabs tabs-box tabs-sm">
+        <button type="button" role="tab" class="tab" id="postits-tab-obj" data-tab="obj">Este proyecto</button>
+        <button type="button" role="tab" class="tab tab-active" id="postits-tab-gen" data-tab="gen">Generales</button>
+      </div>
+      <button type="button" id="postits-cerrar" class="btn btn-ghost btn-sm btn-circle" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    </header>
+    <div class="postits-bar">
+      <button type="button" id="postits-nueva" class="btn btn-warning btn-sm"><i class="fa-solid fa-plus"></i> Nueva nota</button>
+      <label class="label cursor-pointer gap-2 text-xs"><input type="checkbox" id="postits-arch" class="checkbox checkbox-xs"> Archivadas</label>
+    </div>
+    <div id="postits-lista" class="postits-lista"></div>
+  </aside>
+</div>
+<script src="{% static 'postits/postits.js' %}" defer></script>
+{% endif %}

@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'docs',
     'proyectos',
     'panel',
+    'postits',
     'axes',
 
     'django.contrib.admin',
@@ -282,3 +283,8 @@ LOGGING = {
         },
     },
 }
+
+# ── Post-its (app reutilizable `postits`) ──
+POSTITS_MODELOS_PERMITIDOS = ['proyectos.proyecto']
+POSTITS_PUEDE_VER_OBJETO = 'proyectos.postits_permisos.puede_ver'
+POSTITS_ETIQUETA_OBJETO = 'proyectos.postits_permisos.etiqueta'

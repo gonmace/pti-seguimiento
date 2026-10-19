@@ -28,6 +28,7 @@ urlpatterns = [
     path('docs/', include('docs.urls', namespace='docs')),
     path('seguimiento/', include('proyectos.urls', namespace='proyectos')),
     path('panel/', include('panel.urls', namespace='panel')),
+    path('postits/', include('postits.urls', namespace='postits')),
 ]
 
 if settings.DEBUG:

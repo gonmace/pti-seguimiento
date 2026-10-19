@@ -365,13 +365,18 @@
     const sitio = SEL.sitio;
     $('barra-proyecto').classList.add('hidden');
     if ($('item-quitar')) $('item-quitar').classList.add('hidden');
-    if (!sitio) { show('placeholder'); cargarMapaGeneral(); return; }
+    if (!sitio) {
+      document.dispatchEvent(new CustomEvent('postits:contexto', { detail: null }));
+      show('placeholder'); cargarMapaGeneral(); return;
+    }
     show('loading');
     try {
       const r = await fetch(`${API.proyecto}?empresa=${encodeURIComponent(SEL.empresa)}&sitio=${encodeURIComponent(sitio)}`);
       const d = await r.json();
       if (!r.ok) { $('error').className = 'alert alert-error mb-6'; $('error').innerHTML = esc(d.error || 'Error'); show('error'); return; }
       DATOS = d;
+      document.dispatchEvent(new CustomEvent('postits:contexto', { detail: {
+        tipo: 'proyectos.proyecto', id: d.id, etiqueta: `${SEL.empresa} / ${SEL.sitio}` } }));
       $('barra-proyecto').classList.remove('hidden');
       if ($('item-quitar')) $('item-quitar').classList.remove('hidden');
       render();

@@ -123,6 +123,11 @@ CSS: `cd theme/static_src && npm run build` (o `npm run start` para watch). Sali
   `Actividad` = registro automático de cambios (`servicios.registrar`); y el comando
   `python manage.py enviar_recordatorios [--dias N] [--dry-run]` (cron diario) que manda a cada
   responsable/ITO un correo con sus pendientes vencidos y próximos (`SITE_URL` para el enlace).
+- **`postits/`** — app **reutilizable** de notas post-it (ver `postits/README.md`): generales o
+  ligadas a un objeto por GenericForeignKey (aquí `Proyecto`), FAB flotante + panel en `base.html`
+  (`{% postits_widget %}`), colores/fijar/archivar/recordatorio/checklist, compartir en solo
+  lectura. Permisos por objeto vía `POSTITS_PUEDE_VER_OBJETO` (`proyectos/postits_permisos.py`,
+  reusa `_sitios_permitidos`); `seguimiento.html` emite el evento `postits:contexto` al cargar un sitio.
 - **`docs/`** — la app principal. Todas las vistas son `@login_required` y resuelven el rol con
   `_get_user_rol` (`user.profile.rol`, default `"visitante"`).
 - **Roles (un solo campo `UserProfile.rol`):** `visitante` (solo lectura) o una **función ITO**

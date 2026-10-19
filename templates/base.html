@@ -40,6 +40,8 @@
     {% block inline_javascript %}{% endblock %}
     {% block extra_js %}{% endblock %}
 
+    {% load postits %}{% postits_widget %}
+
     <!-- Componente de toasts/alerts (DaisyUI) reutilizable -->
     <script src="{% static 'js/components/alert-component.js' %}"></script>
 
