@@ -39,7 +39,8 @@
     const tieneCtx = !!ST.ctx;
     $('postits-tab-obj').classList.toggle('hidden', !tieneCtx);
     if (!tieneCtx && ST.tab === 'obj') ST.tab = 'gen';
-    $('postits-tab-obj').textContent = tieneCtx && ST.ctx.etiqueta ? ST.ctx.etiqueta : 'Este proyecto';
+    const et = tieneCtx && ST.ctx.etiqueta ? ST.ctx.etiqueta : 'Este proyecto';
+    $('postits-tab-obj').textContent = et; $('postits-tab-obj').title = et;
     $('postits-tab-obj').classList.toggle('tab-active', ST.tab === 'obj');
     $('postits-tab-gen').classList.toggle('tab-active', ST.tab === 'gen');
   }
