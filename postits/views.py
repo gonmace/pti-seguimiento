@@ -49,6 +49,8 @@ def _fecha(valor):
 
 def _aplicar(p, d):
     """Copia a ``p`` los campos presentes en ``d``. Devuelve mensaje de error o None."""
+    if "titulo" in d:
+        p.titulo = str(d["titulo"]).strip()[:120]
     if "texto" in d:
         p.texto = str(d["texto"])[:5000]
     if "color" in d:

@@ -32,6 +32,9 @@
 .postit[data-color="verde"] { --pc: #bbf7d0; }    .postit[data-color="azul"] { --pc: #bfdbfe; }
 .postit[data-color="naranja"] { --pc: #fed7aa; }
 .postit.vencida { outline: 2px solid #dc2626; }
+.postit .postit-titulo { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(0,0,0,.2); border-radius: 0;
+  padding: .1rem 0; font-weight: 800; font-size: 1rem; outline: 0; }
+.postit .postit-titulo:placeholder-shown { font-weight: 500; }
 .postit textarea { width: 100%; min-height: 4rem; resize: vertical; background: transparent; border: 0; outline: 0; font: inherit; color: inherit; }
 .postit-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; font-size: .75rem; opacity: .85; }
 .postit-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .15rem; }

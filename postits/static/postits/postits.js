@@ -77,6 +77,7 @@
       </div>`;
     return `
       <article class="postit ${p.vencida ? 'vencida' : ''}" data-id="${p.id}" data-color="${p.color}">
+        <input type="text" class="postit-titulo" maxlength="120" placeholder="Título (opcional)" value="${esc(p.titulo)}" ${p.es_mio ? '' : 'readonly'} data-act="titulo">
         <textarea ${p.es_mio ? '' : 'readonly'} placeholder="Escribe una nota…" data-act="texto">${esc(p.texto)}</textarea>
         <div class="postit-items">${pintarItems(p)}</div>
         <div class="postit-meta">
@@ -129,10 +130,11 @@
   });
 
   $('postits-lista').addEventListener('input', e => {
-    if (e.target.dataset.act !== 'texto') return;
-    const p = nota(e.target);
-    clearTimeout(timers[p.id]);
-    timers[p.id] = setTimeout(() => editar(p, { texto: e.target.value }, false), 600);
+    const campo = e.target.dataset.act;
+    if (campo !== 'texto' && campo !== 'titulo') return;
+    const p = nota(e.target), k = p.id + campo;
+    clearTimeout(timers[k]);
+    timers[k] = setTimeout(() => editar(p, { [campo]: e.target.value }, false), 600);
   });
 
   $('postits-lista').addEventListener('change', async e => {

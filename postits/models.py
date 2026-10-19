@@ -19,6 +19,7 @@ class Postit(models.Model):
 
     autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
                               related_name="postits")
+    titulo = models.CharField(max_length=120, blank=True)
     texto = models.TextField(blank=True)
     color = models.CharField(max_length=10, choices=COLORES, default="amarillo")
     compartida = models.BooleanField(
@@ -41,7 +42,7 @@ class Postit(models.Model):
         indexes = [models.Index(fields=["content_type", "object_id"])]
 
     def __str__(self):
-        return (self.texto[:40] or "(vacía)")
+        return self.titulo or self.texto[:40] or "(vacía)"
 
     @property
     def vencida(self):

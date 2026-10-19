@@ -56,6 +56,12 @@ class GeneralesTests(PostitsBase):
         self.assertEqual(self.post("borrar", {}, [pk], c).status_code, 404)
         self.assertTrue(Postit.objects.filter(pk=pk, texto="x").exists())
 
+    def test_titulo_opcional(self):
+        pk = self.post("crear", {"texto": "x"}).json()["postit"]["id"]
+        self.assertEqual(self.listar().json()["postits"][0]["titulo"], "")
+        self.post("editar", {"titulo": "  Llamar al cliente  "}, [pk])
+        self.assertEqual(self.listar().json()["postits"][0]["titulo"], "Llamar al cliente")
+
     def test_color_invalido(self):
         self.assertEqual(self.post("crear", {"color": "negro"}).status_code, 400)
 

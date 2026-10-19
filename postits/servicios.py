@@ -10,7 +10,7 @@ def nombre_usuario(u):
 
 def serializar(p, user):
     return {
-        "id": p.pk, "texto": p.texto, "color": p.color,
+        "id": p.pk, "titulo": p.titulo, "texto": p.texto, "color": p.color,
         "compartida": p.compartida, "fijada": p.fijada, "archivada": p.archivada,
         "recordatorio": p.recordatorio.isoformat() if p.recordatorio else "",
         "vencida": p.vencida, "es_mio": p.autor_id == user.pk,
